@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: cb
+  datasource:
+    url: jdbc:postgresql://localhost:5432/cb
+    username: postgres
+    password: sopra*
+    driverClassName: org.postgresql.Driver
+server:
+  contextPath: /cb
+management:
+  contextPath: /admin
