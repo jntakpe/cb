@@ -6,9 +6,13 @@ cbApp.controller('LoginController', ['$scope', '$location', 'CbAuthService',
     function ($scope, $location, CbAuthService) {
         "use strict";
         $scope.login = function () {
-            CbAuthService.login($scope.username, $scope.password, $scope.rememberMe, function () {
-                $location.path('/home')
-            });
+            CbAuthService.login($scope.username, $scope.password, $scope.rememberMe,
+                function () {
+                    $location.path('/home')
+                },
+                function () {
+                    $scope.displayFailLogin = true;
+                });
         };
     }]);
 

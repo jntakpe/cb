@@ -4,12 +4,12 @@
             <ul class="loginbar pull-right">
                 <li>
                     <i class="fa fa-user"></i>
-                    <a>{{user.login}}</a>
+                    <a>{{user.name}}</a>
                 </li>
                 <li class="topbar-devider"></li>
                 <li>
                     <i class="fa fa-users"></i>
-                    <a ng-repeat="authContainer in user.authorities">{{authContainer.authority}}
+                    <a ng-repeat="auth in user.authorities">{{auth.authority}}
                         <span ng-if="!$last">, </span>
                     </a>
                 </li>

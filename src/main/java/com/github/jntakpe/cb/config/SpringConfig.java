@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
  * @author jntakpe
  */
 @Configuration
-@ComponentScan
+@ComponentScan("com.github.jntakpe.cb")
 @EnableAutoConfiguration
 public class SpringConfig {
 

@@ -17,9 +17,9 @@ cbApp.factory('CbAuthService', ['$rootScope', '$http', 'authService', function (
          * @param [authKO] callback en cas d'utilisateur non autorisé
          */
         authenticate: function (authOK, authKO) {
-            $http.get('user')
+            $http.get('auth')
                 .success(function (data) {
-                    if (data.login) {
+                    if (data.authenticated) {
                         $rootScope.$broadcast('event:auth-authConfirmed');
                         if (authOK) {
                             authOK(data);
@@ -50,13 +50,11 @@ cbApp.factory('CbAuthService', ['$rootScope', '$http', 'authService', function (
                 },
                 ignoreAuthModule: 'ignoreAuthModule'
             }).success(function (data, status, headers, config) {
-                $rootScope.authenticationError = false;
                 authService.loginConfirmed();
                 if (loginOK) {
                     loginOK(data, status, headers, config);
                 }
             }).error(function (data, status, headers, config) {
-                $rootScope.authenticationError = true;
                 if (loginFail) {
                     loginFail(data, status, headers, config);
                 }
@@ -68,7 +66,6 @@ cbApp.factory('CbAuthService', ['$rootScope', '$http', 'authService', function (
          * @param [lougoutOK] callback de déconnexion
          */
         logout: function (lougoutOK) {
-            $rootScope.authenticationError = false;
             $http.get('logout').success(function (data, status, headers, config) {
                 authService.loginCancelled();
                 if (lougoutOK) {
