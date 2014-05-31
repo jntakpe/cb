@@ -1,6 +1,8 @@
 package com.github.jntakpe.cb.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.Set;
 
 /**
@@ -41,6 +43,22 @@ public class User extends GenericDomain<Short> {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return !(login != null ? !login.equals(user.login) : user.login != null);
+
+    }
+
+    @Override
+    public int hashCode() {
+        return login != null ? login.hashCode() : 0;
     }
 
     @Override

@@ -1,21 +1,21 @@
 package com.github.jntakpe.cb.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import java.util.Set;
 
 /**
- * Bean représentant un rôle associable à un ou plusieurs utilisateurs
+ * Bean représentant un sport
  *
  * @author jntakpe
  */
 @Entity
-public class Authority extends GenericDomain<Short> {
+public class Sport extends GenericDomain<Short> {
 
     private String name;
 
-    @ManyToMany
-    private Set<User> users;
+    @OneToMany(mappedBy = "sport")
+    private Set<Team> teams;
 
     public String getName() {
         return name;
@@ -25,12 +25,12 @@ public class Authority extends GenericDomain<Short> {
         this.name = name;
     }
 
-    public Set<User> getUsers() {
-        return users;
+    public Set<Team> getTeams() {
+        return teams;
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public void setTeams(Set<Team> teams) {
+        this.teams = teams;
     }
 
     @Override
@@ -38,9 +38,9 @@ public class Authority extends GenericDomain<Short> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Authority authority = (Authority) o;
+        Sport sport = (Sport) o;
 
-        return !(name != null ? !name.equals(authority.name) : authority.name != null);
+        return !(name != null ? !name.equals(sport.name) : sport.name != null);
 
     }
 
@@ -51,7 +51,7 @@ public class Authority extends GenericDomain<Short> {
 
     @Override
     public String toString() {
-        return "Authority{" +
+        return "Sport{" +
                 "name='" + name + '\'' +
                 '}';
     }
