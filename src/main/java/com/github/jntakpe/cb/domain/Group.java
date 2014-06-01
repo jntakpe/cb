@@ -18,8 +18,13 @@ public class Group extends GenericDomain<Short> {
     @ManyToOne
     private Tournament tournament;
 
+
+
     @OneToMany(mappedBy = "group")
     private Set<TeamGroup> teamGroups;
+
+    @OneToMany(mappedBy = "group")
+    private Set<Match> matches;
 
     public String getName() {
         return name;
@@ -43,6 +48,14 @@ public class Group extends GenericDomain<Short> {
 
     public void setTeamGroups(Set<TeamGroup> teamGroups) {
         this.teamGroups = teamGroups;
+    }
+
+    public Set<Match> getMatches() {
+        return matches;
+    }
+
+    public void setMatches(Set<Match> matches) {
+        this.matches = matches;
     }
 
     @Override
